@@ -6,6 +6,7 @@ const App = () => {
   const initialMenu = [
     { id: 1, name: 'Burger', description: 'Delicious burger with cheese', price: 8.99, image: 'burger.jpg' },
     { id: 2, name: 'Pizza', description: 'Tasty pizza with your favorite toppings', price: 12.99, image: 'pizza.jpg' },
+    { id: 3, name: 'Pasta', description: 'Delicious pasta with your favorite toppings', price: 10.99, image: 'pasta.jpg' },
   ];
 
   const [cart, setCart] = useState([]);
@@ -30,19 +31,22 @@ const App = () => {
 
   return (
     <div className="flex">
-      <div className="w-3/4 p-4">
-        <h1 className="text-2xl font-bold mb-4">Food Menu</h1>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Food Menu</h1>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {initialMenu.map((item) => (
-          <FoodItem
-            key={item.id}
-            item={item}
-            addToCart={addToCart}
-            isAdded={!!cart.find((cartItem) => cartItem.id === item.id)}
-          />
+          <div key={item.id} className="mb-4">
+            <FoodItem
+              item={item}
+              addToCart={addToCart}
+              isAdded={!!cart.find((cartItem) => cartItem.id === item.id)}
+            />
+          </div>
         ))}
       </div>
-      <Cart cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
     </div>
+    <Cart cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
+  </div>
   );
 };
 
