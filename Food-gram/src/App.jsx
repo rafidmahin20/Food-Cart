@@ -1,4 +1,3 @@
-// src/App.js
 import { useState } from 'react';
 import FoodItem from './Components/FoodItem';
 import Cart from './Components/Cart';
@@ -7,7 +6,6 @@ const App = () => {
   const initialMenu = [
     { id: 1, name: 'Burger', description: 'Delicious burger with cheese', price: 8.99, image: 'burger.jpg' },
     { id: 2, name: 'Pizza', description: 'Tasty pizza with your favorite toppings', price: 12.99, image: 'pizza.jpg' },
-    // Add more items as needed
   ];
 
   const [cart, setCart] = useState([]);

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import burgerImage from '../assets/Images/burger.jpg';
+import pizzaImage from '../assets/Images/pizza.jpg';
 
 
 const FoodItem = ({ item, addToCart, isAdded }) => {
@@ -20,7 +22,7 @@ const FoodItem = ({ item, addToCart, isAdded }) => {
         {loading ? (
           <div className="h-32 bg-gray-300"></div>
         ) : (
-          <img src={item.image} alt={item.name} className='w-full h-32 object-cover rounded-md'/>
+          <img src={item.image === 'Burger' ? burgerImage : item.name === 'Pizza' ? pizzaImage: ''} alt={item.name} className='w-full h-32 object-cover rounded-md'/>
         )}
       </div>
       <h2 className={`text-xl font-bold ${loading ? 'bg-gray-300 h-6 w-3/4' : ''} ${loading ? 'animate-pulse' : ''}`}>
