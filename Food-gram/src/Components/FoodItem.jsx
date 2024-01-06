@@ -32,7 +32,7 @@ const FoodItem = ({ item, addToCart, isAdded }) => {
       <p className={`${loading ? 'bg-gray-300 h-4 w-2/3' : ''} ${loading ? 'animate-pulse' : ''}`}>
         {loading ? '' : item.description} 
       </p> 
-      <p className={`text-gray-700 ${loading ? 'bg-gray-300 h-4 w-1/4' : ''} ${loading ? 'animate-pulse' : ''}`}>
+      <p className={`text-white ${loading ? 'bg-gray-300 h-4 w-1/4' : ''} ${loading ? 'animate-pulse' : ''}`}>$
         {loading ? '' : `${item.price.toFixed(2)}`}
       </p>
       <div className={`flex items-center mt-2 ${loading ? 'bg-gray-300 h-10' : ''} ${loading ? 'animate-pulse' : ''}`}>
