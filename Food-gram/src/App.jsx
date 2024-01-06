@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.js
+import { useState } from 'react';
+import FoodItem from './Components/FoodItem';
+import Cart from './Components/Cart';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const initialMenu = [
+    { id: 1, name: 'Burger', description: 'Delicious burger with cheese', price: 8.99, image: 'burger.jpg' },
+    { id: 2, name: 'Pizza', description: 'Tasty pizza with your favorite toppings', price: 12.99, image: 'pizza.jpg' },
+    // Add more items as needed
+  ];
+
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    if (!cart.find((cartItem) => cartItem.id === item.id)) {
+      setCart([...cart, item]);
+    }
+  };
+
+  const removeFromCart = (itemId) => {
+    setCart(cart.filter((item) => item.id !== itemId));
+  };
+
+  const updateQuantity = (itemId, newQuantity) => {
+    setCart(
+      cart.map((item) =>
+        item.id === itemId ? { ...item, quantity: Math.max(1, newQuantity) } : item
+      )
+    );
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex">
+      <div className="w-3/4 p-4">
+        <h1 className="text-2xl font-bold mb-4">Food Menu</h1>
+        {initialMenu.map((item) => (
+          <FoodItem
+            key={item.id}
+            item={item}
+            addToCart={addToCart}
+            isAdded={!!cart.find((cartItem) => cartItem.id === item.id)}
+          />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <Cart cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
+    </div>
+  );
+};
 
-export default App
+export default App;
